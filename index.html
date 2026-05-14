@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To My Everything 💕</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #ff758c;
+            --secondary: #ff7eb3;
+            --glass: rgba(255, 255, 255, 0.8);
+            --text: #4a4a4a;
+            --accent: #ff4757;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #ffd1ff, #ffdde1);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            overflow: hidden;
+            color: var(--text);
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Animated Hearts Background */
+        .hearts-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .floating-heart {
+            position: absolute;
+            animation: float-up 6s linear infinite;
+            opacity: 0;
+            filter: drop-shadow(0 0 5px rgba(255,117,140,0.3));
+        }
+
+        @keyframes float-up {
+            0% { transform: translateY(110vh) scale(0.5) rotate(0deg); opacity: 0; }
+            50% { opacity: 0.6; }
+            100% { transform: translateY(-20vh) scale(1.2) rotate(360deg); opacity: 0; }
+        }
+
+        /* Enhanced Glass Container */
+        .container {
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            width: 90%;
+            max-width: 450px;
+            text-align: center;
+            z-index: 10;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            display: none;
+            transform: scale(0.9);
+            transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .active { 
+            display: block; 
+            animation: popIn 0.8s forwards;
+        }
+
+        @keyframes popIn {
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        h1 { 
+            font-family: 'Dancing Script', cursive; 
+            color: var(--primary); 
+            font-size: 3rem; 
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.05);
+        }
+
+        p { line-height: 1.7; margin-bottom: 25px; font-weight: 400; font-size: 0.95rem; }
+
+        /* Media Frame Improvements */
+        .photo-frame {
+            width: 105%;
+            height: 280px;
+            background: #fff;
+            border-radius: 20px;
+            margin-bottom: 25px;
+            border: 8px solid white;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .photo-frame:hover {
+            transform: rotate(-2deg) scale(1.02);
+        }
+
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Improved Buttons */
+        .btn {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            padding: 14px 35px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 8px 15px rgba(255, 117, 140, 0.3);
+            letter-spacing: 0.5px;
+        }
+
+        .btn:hover { 
+            transform: translateY(-3px) scale(1.05); 
+            box-shadow: 0 12px 20px rgba(255, 117, 140, 0.4); 
+        }
+
+        /* Feature Cards */
+        .reason-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .reason-card {
+            background: rgba(255, 255, 255, 0.6);
+            padding: 12px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid rgba(255,255,255,0.8);
+            transition: background 0.3s;
+        }
+
+        .reason-card:hover { background: white; color: var(--primary); }
+
+        .counter { 
+            font-size: 4rem; 
+            font-weight: 700; 
+            color: var(--primary); 
+            display: block; 
+            margin: 15px 0;
+            font-family: 'Dancing Script', cursive;
+        }
+
+        input {
+            width: 100%;
+            padding: 15px;
+            border-radius: 15px;
+            border: 2px solid rgba(255, 117, 140, 0.2);
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 1.1rem;
+            outline: none;
+            background: rgba(255,255,255,0.5);
+            transition: border 0.3s;
+        }
+
+        input:focus { border-color: var(--primary); background: white; }
+
+
+        .music-toggle {
+            position: fixed; bottom: 20px; right: 20px; z-index: 100;
+            background: var(--glass); width: 45px; height: 45px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 50%; cursor: pointer; font-size: 20px;
+            border: 1px solid white; box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <audio id="mySong" loop>
+        <source src="ilysb.mp3" type="audio/mp3">
+    </audio>
+
+    <div class="music-toggle" onclick="toggleMusic()" id="musicBtn">🎵</div>
+
+
+    <div class="hearts-bg" id="heartsBackground"></div>
+
+    <!-- PAGE 1: LOGIN -->
+    <div class="container active" id="page1">
+        <div style="font-size: 60px; margin-bottom: 10px;">🔐</div>
+        <h1>Hey Gorgeous...</h1>
+        <p>This space is just for us. To enter, tell me the date it all started.</p>
+        <input type="text" id="password" placeholder="MM-DD-YYYY">
+        <button class="btn" onclick="checkLogin()">Unlock My Heart 🔑</button>
+        <p id="error" style="color: var(--accent); display:none; margin-top:15px; font-weight:600;">Check the date again, my love! 💖</p>
+    </div>
+
+    <!-- PAGE 2: WELCOME + IMAGE -->
+    <div class="container" id="page2">
+        <h1>Happy 2 Months! 🎉</h1>
+        <div class="photo-frame">
+            <!-- REPLACE THE URL BELOW WITH YOUR PHOTO -->
+            <img src="helena.jpg" alt="Our beautiful memory">
+        </div>
+        <p>They say time flies when you're having fun, but with you, it flies because I'm finally happy. These 60 days have been my favorite chapter yet.</p>
+        <button class="btn" onclick="nextPage(3)">Next Secret... ✨</button>
+    </div>
+
+    <!-- PAGE 3: WHY YOU + IMAGE -->
+    <div class="container" id="page3">
+        <h1>The Little Things</h1>
+        <div class="photo-frame">
+            <!-- REPLACE THE URL BELOW WITH ANOTHER PHOTO -->
+            <img src="lena.jpg" alt="Why I love you">
+        </div>
+        <div class="reason-grid">
+            <div class="reason-card">✨ Your Smile</div>
+            <div class="reason-card">🌸 Your Kindness</div>
+            <div class="reason-card">😂 Your Laugh</div>
+            <div class="reason-card">🧠 Your Mind</div>
+        </div>
+        <button class="btn" onclick="nextPage(4)">The Big Message ❤️</button>
+    </div>
+
+    <!-- PAGE 4: THE BIG MESSAGE -->
+    <div class="container" id="page4">
+        <h1>My Forever 💌</h1>
+        <p style="font-style: italic; color: #666;">
+            "In all the world, there is no heart for me like yours. In all the world, there is no love for you like mine."
+        </p>
+        <div class="counter" id="daysCounter">60</div>
+        <p>Days of purely loving you. And I'm just getting started.</p>
+        <button class="btn" onclick="celebrate()">I Love You! 💋</button>
+    </div>
+
+    <script>
+    const ANNIVERSARY_DATE = "03-15-2026"; 
+    const START_DATE = new Date("2026-03-15"); 
+    const song = document.getElementById('mySong');
+    let musicPlaying = false;
+
+    // This ensures music starts on the first click/interaction
+    function startMusic() {
+        if (!musicPlaying) {
+            song.play().then(() => {
+                musicPlaying = true;
+                document.getElementById('musicBtn').textContent = '🎵';
+            }).catch(error => {
+                console.log("Autoplay prevented. Music will start after interaction.");
+            });
+        }
+    }
+
+    function toggleMusic() {
+        if (musicPlaying) {
+            song.pause();
+            document.getElementById('musicBtn').textContent = '🔇';
+        } else {
+            song.play();
+            document.getElementById('musicBtn').textContent = '🎵';
+        }
+        musicPlaying = !musicPlaying;
+    }
+
+    function checkLogin() {
+        const val = document.getElementById('password').value;
+        if(val === ANNIVERSARY_DATE) {
+            startMusic(); // Starts audio when they unlock the page
+            nextPage(2);
+            updateDays();
+        } else {
+            document.getElementById('error').style.display = 'block';
+        }
+    }
+
+    function createHearts() {
+        const container = document.getElementById('heartsBackground');
+        const hearts = ['❤️', '💖', '✨', '🌸', '💕'];
+        setInterval(() => {
+            const heart = document.createElement('div');
+            heart.className = 'floating-heart';
+            heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.fontSize = (Math.random() * 25 + 15) + 'px';
+            heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
+            container.appendChild(heart);
+            setTimeout(() => heart.remove(), 6000);
+        }, 300);
+    }
+
+    function nextPage(pageNumber) {
+        const containers = document.querySelectorAll('.container');
+        containers.forEach(c => {
+            c.classList.remove('active');
+            c.style.display = 'none';
+        });
+        const next = document.getElementById('page' + pageNumber);
+        if(next) {
+            next.style.display = 'block';
+            setTimeout(() => next.classList.add('active'), 50);
+        }
+    }
+
+    function updateDays() {
+        const today = new Date();
+        const diff = Math.floor((today - START_DATE) / (1000 * 60 * 60 * 24));
+        document.getElementById('daysCounter').textContent = diff;
+    }
+
+    function celebrate() {
+        alert('I love you more than this website could ever say! ❤️');
+        for(let i=0; i<20; i++) {
+            setTimeout(createHearts, i * 100);
+        }
+    }
+
+    createHearts();
+</script>
+</body>
+</html>
